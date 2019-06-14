@@ -1,0 +1,9 @@
+  - platform: template
+    sensors:
+      # Sun hitting exterior of house and shades needed
+      exterior_south_shades_needed:
+        value_template: >-
+          {{ states.sun.sun.attributes.elevation|float > 5 
+            and states.sun.sun.attributes.azimuth|float > 120 
+            and states.sun.sun.attributes.azimuth|float < 295
+            and states.sensor.garage_4in1_sensor_temperature|float > 75  }}

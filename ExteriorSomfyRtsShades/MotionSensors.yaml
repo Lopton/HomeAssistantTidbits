@@ -1,0 +1,43 @@
+  - platform: template
+    sensors:
+      # Motion Detectors - seem to change every minute unless I add a delay for off...
+      motion_guest_room:
+        friendly_name: "Guest Room Motion"
+        value_template: >-
+          {{ is_state('sensor.guest_room_burglar', '8') }}
+        delay_off:
+           seconds: 75
+      motion_garage:
+        friendly_name: "Garage Motion"
+        value_template: >-
+          {{ is_state('sensor.garage_4in1_sensor_burglar', '8') }}
+        delay_off:
+           seconds: 75
+      motion_master_bath:
+        friendly_name: "Master Bath Motion"
+        value_template: >-
+          {{ is_state('sensor.master_bath_4in1_sensor_burglar', '8') }}
+        delay_off:
+           seconds: 75
+      motion_upper_hallway:
+        friendly_name: "Upper Hallway Motion"
+        value_template: >-
+          {{ is_state('sensor.upper_hallway_4in1_sensor_burglar', '8') }}
+        delay_off:
+           seconds: 75
+      washing_machine:
+        friendly_name: "Washing Machine"
+        delay_on:
+          minutes: 3
+        delay_off:
+          minutes: 5
+        value_template: >-
+          {{ states('sensor.washing_machine_power')|float > 50 }}
+      dryer:
+        friendly_name: "Dryer"
+        delay_on:
+          minutes: 3
+        delay_off:
+          minutes: 5
+        value_template: >-
+          {{ states('sensor.dryer_power')|float > 50 }}
